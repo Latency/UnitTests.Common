@@ -2,9 +2,8 @@
 
 	<PropertyGroup>
 		<RepositoryName>UnitTests.Common</RepositoryName>
-		<TargetFrameworks>net45;net451;net452;net46;net461;net462;net47;net471;net472;net48;net481;netstandard2.0;netstandard2.1;net8.0;net9.0;net10.0;net11.0</TargetFrameworks>
-		<SuppressTfmSupportBuildErrors>true</SuppressTfmSupportBuildErrors>
 		<IsTestProject>false</IsTestProject>
+		<TargetFrameworks>net45;net451;net452;net46;net461;net462;net47;net471;net472;net48;net481;netstandard2.0;netstandard2.1;net8.0;net9.0;net10.0;net11.0</TargetFrameworks>
 		<PackageId>Unit-Tests.Common</PackageId>
 		<Version>1.0.0</Version>
 		<Description>Dependency library for all XUnit projects named "Unit Test"</Description>
@@ -21,31 +20,46 @@
 		<Using Include="System.Diagnostics" />
 		<Using Include="Xunit.Abstractions" Condition="$([System.String]::Copy(';net45;net451;net452;net46;net461;net462;net47;net471;netstandard2.0;netstandard2.1;').Contains(';$(TargetFramework);'))" />
 
-		<PackageReference Update="coverlet.collector" Version="10.0.1">
-			<PrivateAssets>all</PrivateAssets>
+		<PackageReference Include="coverlet.collector" Version="10.0.1" PrivateAssets="none">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="MSTest.TestFramework" Version="4.5.1" Condition="!$([System.String]::Copy(';net45;net451;net452;net46;').Contains(';$(TargetFramework);'))" />
 		<PackageReference Include="MSTest.TestFramework" Version="2.2.10" Condition="$([System.String]::Copy(';net45;net451;net452;net46;').Contains(';$(TargetFramework);'))" />
 		<PackageReference Include="xunit" Version="2.9.3" Condition="$([System.String]::Copy(';net45;net451;net452;net46;net461;net462;net47;net471;netstandard2.0;netstandard2.1;').Contains(';$(TargetFramework);'))" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="4.0.1" Condition="!$([System.String]::Copy(';net45;net451;net452;net46;net461;net462;net47;net471;').Contains(';$(TargetFramework);')) And '$(TargetFramework)' != 'netstandard2.0' And '$(TargetFramework)' != 'netstandard2.1' " >
-			<PrivateAssets>all</PrivateAssets>
+		<PackageReference Include="xunit.runner.visualstudio" Version="4.0.1" PrivateAssets="none" Condition="!$([System.String]::Copy(';net45;net451;net452;net46;net461;net462;net47;net471;').Contains(';$(TargetFramework);')) And '$(TargetFramework)' != 'netstandard2.0' And '$(TargetFramework)' != 'netstandard2.1' " >
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" Condition="$([System.String]::Copy(';net45;net451;net452;net46;net461;net462;net47;net471;').Contains(';$(TargetFramework);'))" >
-			<PrivateAssets>all</PrivateAssets>
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" PrivateAssets="none" Condition="$([System.String]::Copy(';net45;net451;net452;net46;net461;net462;net47;net471;').Contains(';$(TargetFramework);'))" >
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="xunit.v3.extensibility.core" Version="4.0.2" Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp' Or '$(TargetFramework)' == 'net472' Or '$(TargetFramework)' == 'net48' Or '$(TargetFramework)' == 'net481'" />
 		<PackageReference Include="xunit.v3.assert" Version="4.0.2" Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp' Or '$(TargetFramework)' == 'net472' Or '$(TargetFramework)' == 'net48' Or '$(TargetFramework)' == 'net481'" />
+		<PackageReference Include="xunit.v3.core" Version="4.0.2" PrivateAssets="none" Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp' Or '$(TargetFramework)' == 'net472' Or '$(TargetFramework)' == 'net48' Or '$(TargetFramework)' == 'net481'" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" PrivateAssets="none" Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp' Or '$(TargetFramework)' == 'net472' Or '$(TargetFramework)' == 'net48' Or '$(TargetFramework)' == 'net481'" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="11.0.100-rc.1.26425.128" PrivateAssets="All" />
 		<!-- SourceLink 11.x depends on System.IO.Hashing 11.x, which does not support net8.0/net9.0; use the 10.x line there -->
-		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="10.0.401" Condition="'$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'net9.0'" />
+		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="10.0.401" PrivateAssets="All" Condition="'$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'net9.0'" />
 		<PackageReference Include="System.Text.Json" Version="8.0.5" Condition="$([System.String]::Copy(';net462;net47;net471;net472;net48;net481;netstandard2.0;netstandard2.1;').Contains(';$(TargetFramework);'))" />
 		<PackageReference Include="System.Net.Http" Version="4.3.4" Condition="'$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net451'" />
 		<PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" Condition="'$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net451'" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" Condition="$([System.String]::Copy(';net45;net451;net452;net46;net461;').Contains(';$(TargetFramework);'))" />
 		<PackageReference Include="Xunit.StaFact" Version="4.0.24" Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp'" />
 	</ItemGroup>
+
+	<!-- xunit.v3.core requires an executable; satisfy its validation only, keeping this a library -->
+	<Target Name="XunitAllowLibraryPre" BeforeTargets="_XunitValidateBuild">
+		<PropertyGroup>
+			<_SavedOutputType>$(OutputType)</_SavedOutputType>
+			<_SavedUseAppHost>$(UseAppHost)</_SavedUseAppHost>
+			<OutputType>Exe</OutputType>
+			<UseAppHost>true</UseAppHost>
+		</PropertyGroup>
+	</Target>
+	<Target Name="XunitAllowLibraryPost" AfterTargets="_XunitValidateBuild">
+		<PropertyGroup>
+			<OutputType>$(_SavedOutputType)</OutputType>
+			<UseAppHost>$(_SavedUseAppHost)</UseAppHost>
+		</PropertyGroup>
+	</Target>
 
 </Project>
